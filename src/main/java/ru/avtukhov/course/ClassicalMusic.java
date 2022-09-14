@@ -1,21 +1,21 @@
 package ru.avtukhov.course;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import static java.util.Arrays.asList;
 
-@Component
-public class ClassicalMusic implements Music{
-    List<String> classicalMusicList = asList("LALITA", "MORGEN", " КОРЖ");
-    Random random = new Random();
+
+public class ClassicalMusic implements Music {
 
     @Override
     public String getSong() {
-        int rondomItem = random.nextInt(classicalMusicList.size());
-        return classicalMusicList.get(rondomItem);
+        return "Hungarian Rhapsody";
     }
 }

@@ -2,31 +2,34 @@ package ru.avtukhov.course;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+
 public class MusicPlayer {
-    private Music music1;
-    private Music music2;
 
-    @Autowired
-    public MusicPlayer(@Qualifier("rockMusic") Music music1,@Qualifier("classicalMusic") Music music2) {
-        this.music1 = music1;
-        this.music2 = music2;
+    private List<Music> listMusic;
+
+
+    public MusicPlayer(List<Music> listMusic) {
+        this.listMusic = listMusic;
     }
+    //    public String getName() {
+//        return name;
+//    }
+//
+//    public int getVolume() {
+//        return volume;
+//    }
 
-
-    public void playMusic(MusicGenre genre) {
-         String result = null;
-        switch (genre) {
-            case ROCK:
-                result =  "Playing: " + music1.getSong();
-                break;
-            case CLASSICAL:
-                result = "Playing: " + music2.getSong();
-                break;
-        }
-        System.out.println("Playing: " + result);
+    public void playMusic() {
+        Random random = new Random();
+        int randomItem = random.nextInt(listMusic.size());
+        System.out.println(listMusic.get(randomItem).getSong());
     }
 
 }
